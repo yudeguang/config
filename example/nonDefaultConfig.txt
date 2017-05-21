@@ -1,0 +1,3 @@
+﻿[config]
+key1=val1_nodefault
+ke2=val2_nodefault
