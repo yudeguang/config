@@ -17,6 +17,7 @@ type ConfigStruct struct {
 	mapConfigs map[string]string
 }
 
+//配置文件初始化函数，如果配置文件放置在所在程序同目录下并且名称为config.ini则无需执行此函数
 func NewConfig(fileName string) (*ConfigStruct, error) {
 	var configs ConfigStruct
 	configs.mapConfigs = make(map[string]string)
@@ -53,13 +54,13 @@ func (this *ConfigStruct) parse(sour string) {
 	}
 }
 
-//获得一个字符串
+//根据键值获得一个字符串
 func (this *ConfigStruct) Get(key string) string {
 	smallkey := strings.ToLower(key)
 	return this.mapConfigs[smallkey]
 }
 
-//获得一个数字
+//根据键值获得一个数字
 func (this *ConfigStruct) GetInt(key string) int {
 
 	smallkey := strings.ToLower(key)
