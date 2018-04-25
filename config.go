@@ -2,7 +2,6 @@ package config
 
 import (
 	"bytes"
-	"code.google.com/p/mahonia"
 	"fmt"
 	"io/ioutil"
 	"strconv"
@@ -33,7 +32,7 @@ func NewConfig(fileName string) (*ConfigStruct, error) {
 	if bytes.Equal(data[0:3], []byte{0xef, 0xbb, 0xbf}) {
 		configs.parse(string(data))
 	} else {
-		configs.parse(convertString(string(data)))
+		configs.parse(string(data))
 	}
 	return &configs, nil
 }
@@ -73,16 +72,6 @@ func (this *ConfigStruct) GetInt(key string) int {
 		return 0
 	}
 	return int(n)
-}
-
-//防止中文字符等出现乱码
-func convertString(s string) string {
-	var dec mahonia.Decoder
-	dec = mahonia.NewDecoder("GB18030")
-	if ret, ok := dec.ConvertStringOK(s); ok {
-		return ret
-	}
-	return s
 }
 
 //生成样本配置文件
