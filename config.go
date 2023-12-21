@@ -65,7 +65,7 @@ func (this *ConfigStruct) GetAndCheck(key string) string {
 	smallkey := strings.ToLower(key)
 	v, ok := this.mapConfigs[smallkey]
 	if !ok {
-		log.Panic(key, "is not exist")
+		log.Panic(`the key:"`+key, `" is not exist`)
 	}
 	return v
 }
@@ -89,11 +89,11 @@ func (this *ConfigStruct) GetIntAndCheck(key string) int {
 	smallkey := strings.ToLower(key)
 	val, ok := this.mapConfigs[smallkey]
 	if !ok {
-		log.Panic(key, "is not exist")
+		log.Panic(`the key:"`+key, `" is not exist`)
 	}
 	n, err := strconv.ParseInt(val, 10, 64)
 	if err != nil {
-		log.Panic(err)
+		log.Panic(`the value:"`+val+`" of the key:"`+key, `" can not convert to int`)
 	}
 	return int(n)
 }
@@ -113,7 +113,7 @@ func (this *ConfigStruct) GetBoolAndCheck(key string) bool {
 	smallkey := strings.ToLower(key)
 	val, ok := this.mapConfigs[smallkey]
 	if !ok {
-		log.Panic(key, "is not exist")
+		log.Panic(`the key:"`+key, `" is not exist`)
 	}
 	return strings.ToLower(val) == "true"
 }
