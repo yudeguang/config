@@ -124,3 +124,12 @@ func createExampleConfig() {
 	configText = configText + "\r\nKeyExample=ValueExample"
 	ioutil.WriteFile("./config_example.ini", []byte(configText), 0x666)
 }
+
+// 获取所有配置，用复制的方式获取出来，防止原始内容被修改
+func (this *ConfigStruct) GetAllConfigs() map[string]string {
+	m := make(map[string]string)
+	for k, v := range this.mapConfigs {
+		m[k] = v
+	}
+	return m
+}
